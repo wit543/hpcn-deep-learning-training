@@ -8,6 +8,7 @@ ARG TF_AVAILABLE_CPUS=32
 
 # install package
 RUN apt-get update && apt-get install -y --no-install-recommends \
+        apt-utils \
         build-essential \
         curl \
         git \
