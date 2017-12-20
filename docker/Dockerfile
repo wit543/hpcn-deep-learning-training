@@ -122,4 +122,4 @@ EXPOSE 6006
 # IPython
 EXPOSE 8888
 
-RUN ["/bin/bash && source activate deep"]
+RUN [ "/bin/bash", "-c", "source activate deep"]
