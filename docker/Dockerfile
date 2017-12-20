@@ -48,7 +48,7 @@ ENV PATH /opt/conda/bin:$PATH
 # Use the environment.yml to create the conda environment.
 ADD environment.yml /tmp/environment.yml
 WORKDIR /tmp
-RUN [ “conda”, “env”, “create” ]
+RUN [ "conda", "env", "create" ]
 
 # Set up our notebook config.
 # COPY jupyter_notebook_config.py /root/.jupyter/
