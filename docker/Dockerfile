@@ -123,4 +123,12 @@ EXPOSE 6006
 # IPython
 EXPOSE 8888
 
-RUN [ "/bin/bash", "-c", "source activate deep"]
+# Add a notebook profile.
+RUN mkdir -p -m 700 /root/.jupyter/ && \
+    echo "c.NotebookApp.ip = '*'" >> /root/.jupyter/jupyter_notebook_config.py
+
+VOLUME /notebooks
+WORKDIR /notebooks
+
+ENTRYPOINT ["tini", "--"]
+CMD ["jupyter", "notebook", "--no-browser", "--allow-root"]
