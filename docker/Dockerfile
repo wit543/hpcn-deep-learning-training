@@ -51,7 +51,7 @@ WORKDIR /tmp
 RUN [ "conda", "env", "create" ]
 
 WORKDIR /
-RUN [ "/bin/bash", "-c", "source activate your-environment && python setup.py develop"]
+RUN [ "/bin/bash", "-c", "source activate deep"]
 
 # Set up our notebook config.
 # COPY jupyter_notebook_config.py /root/.jupyter/
@@ -122,4 +122,4 @@ EXPOSE 6006
 # IPython
 EXPOSE 8888
 
-RUN ["/bin/bash"]
+RUN ["/bin/bash && source activate deep"]
