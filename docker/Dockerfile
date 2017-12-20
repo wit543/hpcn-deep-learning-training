@@ -50,6 +50,9 @@ ADD environment.yml /tmp/environment.yml
 WORKDIR /tmp
 RUN [ "conda", "env", "create" ]
 
+WORKDIR /
+RUN [ "/bin/bash", "-c", "source activate your-environment && python setup.py develop"]
+
 # Set up our notebook config.
 # COPY jupyter_notebook_config.py /root/.jupyter/
 
