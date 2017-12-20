@@ -6,6 +6,7 @@ ARG TF_BRANCH=master
 ARG BAZEL_VERSION=0.5.4
 ARG TF_AVAILABLE_CPUS=32
 
+# install package
 RUN apt-get update && apt-get install -y --no-install-recommends \
         build-essential \
         curl \
@@ -30,28 +31,31 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-RUN pip --no-cache-dir install --upgrade \
-        pip setuptools
+ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
-RUN pip --no-cache-dir install \
-        ipykernel \
-        jupyter \
-        matplotlib \
-        numpy \
-        scipy \
-        sklearn \
-        pandas \
-        wheel \
-        && \
-    python -m ipykernel.kernelspec
+RUN apt-get update --fix-missing && apt-get install -y wget bzip2 ca-certificates \
+    libglib2.0-0 libxext6 libsm6 libxrender1 \
+    git mercurial subversion
+
+RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
+    wget --quiet https://repo.continuum.io/archive/Anaconda3-5.0.1-Linux-x86_64.sh -O ~/anaconda.sh && \
+    /bin/bash ~/anaconda.sh -b -p /opt/conda && \
+    rm ~/anaconda.sh
+
+ENV PATH /opt/conda/bin:$PATH
+
+# Use the environment.yml to create the conda environment.
+ADD environment.yml /tmp/environment.yml
+WORKDIR /tmp
+RUN [ “conda”, “env”, “create” ]
 
 # Set up our notebook config.
-COPY jupyter_notebook_config.py /root/.jupyter/
+# COPY jupyter_notebook_config.py /root/.jupyter/
 
 # Jupyter has issues with being run directly:
 #   https://github.com/ipython/ipython/issues/7062
 # We just add a little wrapper script.
-COPY run_jupyter.sh /
+# COPY run_jupyter.sh /
 
 # Set up Bazel.
 
