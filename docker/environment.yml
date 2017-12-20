@@ -59,7 +59,7 @@ dependencies:
     - requests==2.13.0
     - scikit-learn==0.19.1
     - six==1.11.0
-    - tensorflow-gpu==1.4
+#    - tensorflow-gpu==1.4
+#    - tensorflow-tensorboard==0.4.*
     - urllib3==1.22
-    - tensorflow-tensorboard==0.4.*
     - wheel==0.30.0
