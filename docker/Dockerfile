@@ -91,8 +91,8 @@ WORKDIR /tensorflow
 ENV CI_BUILD_PYTHON=python \
     LD_LIBRARY_PATH=/usr/local/cuda/extras/CUPTI/lib64:${LD_LIBRARY_PATH} \
     CUDNN_INSTALL_PATH=/usr/lib/x86_64-linux-gnu \
-    PYTHON_BIN_PATH=/usr/bin/python \
-    PYTHON_LIB_PATH=/usr/local/lib/python2.7/dist-packages \
+    PYTHON_BIN_PATH=/opt/conda/envs/deep/bin/python \
+    PYTHON_LIB_PATH=/opt/conda/envs/deep/lib/ \
     TF_NEED_CUDA=1 \
     TF_CUDA_VERSION=9.0 \
     TF_CUDA_COMPUTE_CAPABILITIES=3.0,3.5,5.2,6.0,6.1,7.0 \
