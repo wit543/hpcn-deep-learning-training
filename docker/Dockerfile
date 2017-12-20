@@ -111,9 +111,10 @@ RUN ln -s /usr/local/cuda/lib64/stubs/libcuda.so /usr/local/cuda/lib64/stubs/lib
     bazel-bin/tensorflow/tools/pip_package/build_pip_package /pip_pkg
 
 # Clean up pip wheel and Bazel cache when done.
-RUN pip --no-cache-dir install --upgrade /pip_pkg/tensorflow-*.whl && \
+RUN [ "/bin/bash", "-c", "source activate deep && \
+    pip --no-cache-dir install --upgrade /pip_pkg/tensorflow-*.whl && \
     rm -rf /pip_pkg && \
-    rm -rf /root/.cache
+    rm -rf /root/.cache "]
 
 WORKDIR /root
 
