@@ -4,7 +4,6 @@ dependencies:
   - python=3.6   # or 2.7
   - bokeh=0.9.2
   - numpy=1.9.*
-  - nodejs=0.10.*
   - ipython
   - colorama=0.3.9
   - cycler=0.10.0
@@ -36,6 +35,10 @@ dependencies:
   - pygments=2.2.0
   - pyparsing=2.2.0
   - pyqt=5.6.0
+  - python-dateutil=2.6.1
+  - pytz=2017.2
+  - qt=5.6.2
+  - qtconsole=4.3.1
   - pip:
     - Flask-Testing
     - h5py=2.7.1
@@ -47,3 +50,5 @@ dependencies:
     - protobuf
     - pycuda=2017.11
     - pytest=3.2.2
+    - pytools=2017.6
+    - PyYAML=3.12
